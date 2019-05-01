@@ -1,6 +1,14 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
-index:
+index_page:
     path: /
     controller: App\Controller\IndexController::index
+
+menu_page:
+    path: /menu
+    controller: App\Controller\IndexController::menu_page
+
+contact_page:
+    path: /contact
+    controller: App\Controller\IndexController::contact_page
