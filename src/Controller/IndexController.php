@@ -23,7 +23,7 @@ class IndexController extends  AbstractController
     $this->servicePlat = new PlatService($this->getDoctrine());
     $data=array();
     $data['specialites']=$this->servicePlat->getSpecialités();
-    var_dump($data);
+   // var_dump($data);
     $content = $twig->render('accueil.html.twig',$data);
 
     return new Response($content);
