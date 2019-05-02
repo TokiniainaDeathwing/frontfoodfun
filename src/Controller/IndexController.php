@@ -45,4 +45,18 @@ class IndexController extends  AbstractController
     return new Response($content);
   }
 
+    // Fiche plat
+    public function fiche_page(Environment $twig)
+    {
+
+        $this->servicePlat = new PlatService($this->getDoctrine());
+        $data=array();
+        $data['plat']=$this->servicePlat->getPlatById(1);
+        ($data['plat']);
+        $data['images_plat']=$this->servicePlat->getImagePlat(1);
+        $content = $twig->render('fiche.html.twig',$data);
+
+        return new Response($content);
+    }
+
 }

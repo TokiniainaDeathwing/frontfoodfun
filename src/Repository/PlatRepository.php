@@ -22,19 +22,55 @@ class PlatRepository extends ServiceEntityRepository
     // /**
     //  * @return Plat[] Returns an array of Plat objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findPlatById($id)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT p.*,i.url,i.description as descriptionimage,i.type
+         FROM plat p JOIN
+          images i on i.idplat=p.id
+          WHERE p.id = :id AND i.type=0;
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['id' => $id]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll()[0];
     }
-    */
+    public function findImagesByIdplat($id)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT * FROM images where idplat=:id and type!=0 order by idplat limit 0,5;
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['id' => $id]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll();
+    }
+    public function findPlatsByCategorie($categorie): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT p.*,c.nom as categorie,i.url,i.description as descriptionimage,i.type
+         FROM plat p 
+         JOIN categorieplat 
+         ca on ca.idplat=p.id 
+         JOIN categorie c ON c.id=ca.idcategorie JOIN
+          images i on i.idplat=p.id
+          WHERE c.nom = :cat AND i.type=1;
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['cat' => $categorie]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll();
+    }
 
     /*
     public function findOneBySomeField($value): ?Plat
@@ -47,4 +83,6 @@ class PlatRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
 }

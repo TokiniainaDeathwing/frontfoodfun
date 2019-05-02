@@ -10,13 +10,32 @@ class PlatService
         $this->re = $re;
 
     }
+    //get Spécialite d'el Resto
     public function getSpecialités():? array
     {
         $product = $this->re
             ->getRepository(Plat::class)
-            ->findBy(array(),['id'=>'desc'],3);
+            ->findPlatsByCategorie('specialite');
         return $product;
 
+
+    }
+   //find plat by Id
+    public function getPlatById($id){
+
+        $product = $this->re
+            ->getRepository(Plat::class)
+            ->findPlatById($id);
+        return $product;
+
+    }
+//find images
+    public function getImagePlat($id):? array{
+
+        $product = $this->re
+            ->getRepository(Plat::class)
+            ->findImagesByIdplat($id);
+        return $product;
 
     }
 

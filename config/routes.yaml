@@ -12,3 +12,7 @@ menu_page:
 contact_page:
     path: /contact
     controller: App\Controller\IndexController::contact_page
+
+fiche_page:
+    path: /plat
+    controller: App\Controller\IndexController::fiche_page

@@ -1,0 +1,95 @@
+
+{% extends "base.html.twig" %}
+
+{% block title %}El Resto-Restaurant-Menu {% endblock %}
+
+
+
+{% block header %}
+    <header class="header-area header-area2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="logo-area">
+
+                        <a href="{{ app.request.getBaseURL() }}"><img src=" {{ asset('assets/images/logo/logo2.png') }}" alt="logo"></a>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="custom-navbar">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="main-menu main-menu2">
+                        {% block menu %}
+                            {{parent()}}
+                        {% endblock%}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock%}
+
+{% block banner %}
+    <section class="banner-area testimonial-area section-padding4 menu-bg text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1><i>Our Menu</i></h1>
+                    <p class="pt-2"><i>Beast kind form divide night above let moveth bearing darkness.</i></p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block content %}
+    <section class="welcome-area section-padding2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 align-self-center">
+                    <div class="welcome-img">
+                        <img src="{{ plat.url }}" class="img-fluid" alt="{{ plat.descriptionimage }}">
+                    </div>
+                </div>
+                <div class="col-md-6 align-self-center">
+                    <div class="welcome-text mt-5 mt-md-0">
+                        <h3><span class="style-change">{{ plat.nom }}</span> <br>{{ plat.descriptioncourte }}</h3>
+                        <p class="pt-3">{{ plat.descriptionlongue }}</p>
+                        <span class="genric-btn success-border circle">Ar {{ plat.prix }}</span> <br>
+                        <a href="#reservation" class="template-btn mt-3">book a table</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class=" section-padding4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-top2 text-center">
+                        <h3> <span></span></h3>
+                        <p><i></i></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="testimonial-slider owl-carousel">
+                        {% for image in images_plat %}
+                        <div class="single-slide d-sm-flex">
+                                <img src="{{ image.url }}" alt="{{ image.description }}" class="img-fluid">
+
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}
