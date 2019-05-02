@@ -3,15 +3,28 @@
 
 namespace App\Controller;
 
+use App\Service\PlatService;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\DBAL\Driver\Connection;
+use Doctrine\ORM\EntityManagerInterface;
 use Twig\Environment;
 
-class IndexController
+class IndexController extends  AbstractController
 {
   // home page
+    private $servicePlat;
   public function index(Environment $twig)
   {
-    $content = $twig->render('accueil.html.twig');
+
+    $this->servicePlat = new PlatService($this->getDoctrine());
+    $data=array();
+    $data['specialites']=$this->servicePlat->getSpecialités();
+    var_dump($data);
+    $content = $twig->render('accueil.html.twig',$data);
 
     return new Response($content);
   }
