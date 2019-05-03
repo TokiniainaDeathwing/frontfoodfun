@@ -1,5 +1,5 @@
 <?php
-namespace App\service;
+namespace App\Service;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use App\Entity\Plat;
@@ -15,7 +15,17 @@ class PlatService
     {
         $product = $this->re
             ->getRepository(Plat::class)
-            ->findPlatsByCategorie('specialite');
+            ->findPlatsByCategorie('specialite','1');
+        return $product;
+
+
+    }
+    //plats random
+    public function getPlatRandom():? array
+    {
+        $product = $this->re
+            ->getRepository(Plat::class)
+            ->findRandomPlat('6');
         return $product;
 
 
@@ -35,6 +45,25 @@ class PlatService
         $product = $this->re
             ->getRepository(Plat::class)
             ->findImagesByIdplat($id);
+        return $product;
+
+    }
+//recherche plat
+    public function rechercherPlat($nom,$categorie,$limit,$offset){
+
+        $product = $this->re
+            ->getRepository(Plat::class)
+            ->searchPlat($limit,$offset,$nom,$categorie,'1');
+        return $product;
+
+    }
+
+//count recherche plat
+    public function countPlat($nom,$categorie){
+
+        $product = $this->re
+            ->getRepository(Plat::class)
+            ->NbrsearchPlat($nom,$categorie,'1');
         return $product;
 
     }

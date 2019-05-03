@@ -39,6 +39,40 @@ class PlatRepository extends ServiceEntityRepository
         // returns an array of arrays (i.e. a raw data set)
         return $stmt->fetchAll()[0];
     }
+    public function findAllPlat(){
+
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT p.*,i.url,i.description as descriptionimage,i.type
+         FROM plat p JOIN
+          images i on i.idplat=p.id
+          WHERE p.id = :id AND i.type=0;
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(null);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll();
+    }
+    public function findRandomPlat($nombre){
+
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT p.*,i.url,i.description as descriptionimage,i.type
+         FROM plat p JOIN
+          images i on i.idplat=p.id
+          WHERE i.type=0
+          ORDER BY RAND() LIMIT 6;
+          
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['nombre'=>$nombre]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll();
+    }
     public function findImagesByIdplat($id)
     {
         $conn = $this->getEntityManager()->getConnection();
@@ -52,7 +86,7 @@ class PlatRepository extends ServiceEntityRepository
         // returns an array of arrays (i.e. a raw data set)
         return $stmt->fetchAll();
     }
-    public function findPlatsByCategorie($categorie): array
+    public function findPlatsByCategorie($categorie,$type): array
     {
         $conn = $this->getEntityManager()->getConnection();
 
@@ -63,15 +97,66 @@ class PlatRepository extends ServiceEntityRepository
          ca on ca.idplat=p.id 
          JOIN categorie c ON c.id=ca.idcategorie JOIN
           images i on i.idplat=p.id
-          WHERE c.nom = :cat AND i.type=1;
+          WHERE c.nom = :cat AND i.type=:type;
         ';
         $stmt = $conn->prepare($sql);
-        $stmt->execute(['cat' => $categorie]);
+        $stmt->execute(['cat' => $categorie,'type'=>$type]);
 
         // returns an array of arrays (i.e. a raw data set)
         return $stmt->fetchAll();
     }
 
+    public function searchPlat($limit,$offset,$nom,$categorie,$typeimage): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT p.*,c.nom as categorie,i.url,i.description as descriptionimage,i.type
+         FROM plat p 
+         JOIN categorieplat 
+         ca on ca.idplat=p.id 
+         JOIN categorie c ON c.id=ca.idcategorie JOIN
+          images i on i.idplat=p.id WHERE 1<2 and i.type=:type
+        ';
+        if($nom!=""){
+            $sql=$sql." and( p.nom like '%".$nom."%' or p.descriptioncourte like '%".$nom."%' or p.descriptionlongue like '%".$nom."%' )";
+        }
+        if($categorie!=""){
+            $sql=$sql." and c.nom='".$categorie."'";
+        }
+        $sql=$sql." order by p.id limit ".$offset.",".$limit;
+        $sql=$sql.";";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['type'=>$typeimage]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll();
+    }
+    public function NbrsearchPlat($nom,$categorie,$typeimage)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT count(*) as nombre
+         FROM plat p 
+         JOIN categorieplat 
+         ca on ca.idplat=p.id 
+         JOIN categorie c ON c.id=ca.idcategorie JOIN
+          images i on i.idplat=p.id WHERE 1<2 and i.type=:type
+        ';
+        if($nom!=""){
+            $sql=$sql." and( p.nom like '%".$nom."%' or p.descriptioncourte like '%".$nom."%' or p.descriptionlongue like '%".$nom."%' )";
+        }
+        if($categorie!=""){
+            $sql=$sql." and c.nom='".$categorie."'";
+        }
+        $sql=$sql.";";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['type'=>$typeimage]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll()[0]['nombre'];
+    }
     /*
     public function findOneBySomeField($value): ?Plat
     {

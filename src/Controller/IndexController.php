@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Service\PlatService;
+use App\Service\CategorieService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,6 +24,7 @@ class IndexController extends  AbstractController
     $this->servicePlat = new PlatService($this->getDoctrine());
     $data=array();
     $data['specialites']=$this->servicePlat->getSpecialités();
+    $data['random']=$this->servicePlat->getPlatRandom();
    // var_dump($data);
     $content = $twig->render('accueil.html.twig',$data);
 
@@ -30,10 +32,40 @@ class IndexController extends  AbstractController
   }
 
   // liste des plats
-  public function menu_page(Environment $twig)
+  public function menu_page(Environment $twig,Request $request)
   {
-    $content = $twig->render('menu.html.twig');
 
+    $this->servicePlat = new PlatService($this->getDoctrine());
+    $serviceCategorie=new CategorieService($this->getDoctrine());
+    $query=$request->query->get('query');
+    $categorie=$request->query->get('categorie');
+    $limit=$request->query->get('limit');
+    $offset=$request->query->get('offset');
+    if($limit==""){
+        $limit=6;
+    }
+    if($offset==""){
+        $offset=0;
+    }
+    if($query==null){
+        $query="";
+    }
+    if($categorie==null){
+        $categorie="";
+    }
+    $page=$offset/$limit +1;
+    $data=array();
+    $data['nombre']=$this->servicePlat->countPlat($query,$categorie);
+    $data['categories']=$serviceCategorie->getCategories();
+    $data['results']=$this->servicePlat->rechercherPlat($query,$categorie,$limit,$offset);
+    $data['limit']=$limit;
+    $data['offset']=$offset;
+    $data['query']=$query;
+    $data['page_max']=(int)($data['nombre']/$limit)+1;
+    $data['page']=$page;
+    $data['categorie']=$categorie;
+    //var_dump($data);
+      $content = $twig->render('menu.html.twig',$data);
     return new Response($content);
   }
 

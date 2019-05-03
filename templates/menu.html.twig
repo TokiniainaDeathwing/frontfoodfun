@@ -3,6 +3,10 @@
 
 {% block title %}El Resto-Restaurant-Menu {% endblock %}
 
+{% block css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}">
+{% endblock %}
 
 
 {% block header %}
@@ -47,101 +51,82 @@
 
 {% block content %}
 <section class="food-area section-padding">
-        <div class="container">
+
+
+    <div class="container">
             <div class="row">
-                <div class="col-md-5">
-                    <div class="section-top">
-                        <h3><span class="style-change">we serve</span> <br>delicious food</h3>
-                        <p class="pt-3">They're fill divide i their yielding our after have him fish on there for greater man moveth, moved Won't together isn't for fly divide mids fish firmament on net.</p>
+                <div class="col-lg-6 col-md-8 " style="margin-left: 10%">
+
+
+                    <div class="section-top " >
+                        <form action="{{ path('menu_page') }}" method="get">
+                            <h5>Categorie</h5>
+                            <div class="default-select" id="default-select">
+                                <select name="categorie" style="display: none;">
+                                    <option value="">Tous</option>
+                                    {% for categorie in categories %}
+
+                                        <option value="{{ categorie.nom }}">{{ categorie.nom }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <h5>Plat</h5>
+                            <input type="text" name="query" placeholder="Rosemary Chicken" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Rechercher un plat'"  class="single-input " style="border-color:#FFFF00">
+                            <br>
+                            <input type="submit" class="genric-btn success circle" value="Rechercher"></input>
+
+                        </form>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-food">
-                        <div class="food-img">
-                            <img src="{{ asset('assets/images/food1.jpg') }}" class="img-fluid" alt="">
-                        </div>
-                        <div class="food-content">
-                            <div class="d-flex justify-content-between">
-                                <h5>Mexican Eggrolls</h5>
-                                <span class="style-change">$14.50</span>
-                            </div>
-                            <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-food mt-5 mt-sm-0">
-                        <div class="food-img">
-                            <img src="{{ asset('assets/images/food2.jpg') }}" class="img-fluid" alt="">
-                        </div>
-                        <div class="food-content">
-                            <div class="d-flex justify-content-between">
-                                <h5>chicken burger</h5>
-                                <span class="style-change">$9.50</span>
-                            </div>
-                            <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-food mt-5 mt-md-0">
-                        <div class="food-img">
-                            <img src="{{ asset('assets/images/food3.jpg') }}" class="img-fluid" alt="">
-                        </div>
-                        <div class="food-content">
-                            <div class="d-flex justify-content-between">
-                                <h5>topu lasange</h5>
-                                <span class="style-change">$12.50</span>
-                            </div>
-                            <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-food mt-5">
-                        <div class="food-img">
-                            <img src="{{ asset('assets/images/food4.jpg') }}" class="img-fluid" alt="">
-                        </div>
-                        <div class="food-content">
-                            <div class="d-flex justify-content-between">
-                                <h5>pepper potatoas</h5>
-                                <span class="style-change">$14.50</span>
-                            </div>
-                            <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-food mt-5">
-                        <div class="food-img">
-                            <img src="{{ asset('assets/images/food5.jpg') }}" class="img-fluid" alt="">
-                        </div>
-                        <div class="food-content">
-                            <div class="d-flex justify-content-between">
-                                <h5>bean salad</h5>
-                                <span class="style-change">$8.50</span>
-                            </div>
-                            <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-food mt-5">
-                        <div class="food-img">
-                            <img src="{{ asset('assets/images/food6.jpg') }}" class="img-fluid" alt="">
-                        </div>
-                        <div class="food-content">
-                            <div class="d-flex justify-content-between">
-                                <h5>beatball hoagie</h5>
-                                <span class="style-change">$11.50</span>
-                            </div>
-                            <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
-                        </div>
+                <div class="col-md-5 " style="margin-left: 30%">
+                    <div class="section-top align-self-center" >
+                        <h3><span class="style-change">{{ nombre }} resultat(s)</span> <br></h3>
+                        <p class="pt-3"></p>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                {% if (results) %}
+                    {% for result in results %}
+
+                    <div class="col-md-4 col-sm-6">
+                        <div class="single-food">
+                            <div class="food-img">
+                                <img src="{{ result.url }}" class="img-fluid" alt="{{ result.descriptionimage }}">
+                            </div>
+                            <div class="food-content">
+                                <div class="d-flex justify-content-between">
+                                    <h5>{{ result.nom }}</h5>
+                                    <span class="style-change">{{ result.prix }}</span>
+                                </div>
+                                <p class="pt-3">{{ result.descriptioncourte }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    No More Results
+                {% endif %}
+
+
+            </div>
+            <div>
+                {% if(page>1) %}
+
+                    <a href="{{ path('menu_page', {'query':query,'offset':(offset-limit),'limit':limit,'categorie':categorie} ,relative=false) }}" class="genric-btn primary-border circle">Précédent</a>
+                {% endif %}
+                {% if(page<page_max) %}
+                    <a href="{{ path('menu_page', {'query':query,'offset':(offset+limit),'limit':limit,'categorie':categorie} ,relative=false) }}" class="genric-btn primary-border circle">Suivant</a>
+
+                {%  endif %}
+
+
+            </div>
+        <div>
+        </div>
         </div>
     </section>
 {% endblock %}
