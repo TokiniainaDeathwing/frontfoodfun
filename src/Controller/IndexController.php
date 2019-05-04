@@ -82,10 +82,12 @@ class IndexController extends  AbstractController
     {
 
         $this->servicePlat = new PlatService($this->getDoctrine());
+        $id=1;
+        $serviceCategorie=new CategorieService($this->getDoctrine());
         $data=array();
-        $data['plat']=$this->servicePlat->getPlatById(1);
-        ($data['plat']);
-        $data['images_plat']=$this->servicePlat->getImagePlat(1);
+        $data['plat']=$this->servicePlat->getPlatById($id);
+        $data['categories']=$serviceCategorie->getCategories();
+        $data['images_plat']=$this->servicePlat->getImagePlat($id);
         $content = $twig->render('fiche.html.twig',$data);
 
         return new Response($content);
