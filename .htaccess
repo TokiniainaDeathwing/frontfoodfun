@@ -1,4 +1,6 @@
 <IfModule mod_rewrite.c>
+
+    Options +FollowSymlinks
     RewriteEngine On
 
     # Determine the RewriteBase automatically and set it as environment variable.
@@ -11,8 +13,9 @@
     RewriteRule .? - [L]
 
     # Rewrite all other queries to the front controller.
-    RewriteRule .? %{ENV:BASE}/index.php [L]
-    RewriteRule ^plato/?.*-([_a-z0-9]*)$ %{ENV:BASE}/index.php [L]
+    #RewriteRule .? %{ENV:BASE}/index.php
+    RewriteRule ^pages/index.html$  index.php [L]
+
    #
 
 </IfModule>
