@@ -11,7 +11,8 @@
     RewriteRule .? - [L]
 
     # Rewrite all other queries to the front controller.
-    RewriteRule .? %{ENV:BASE}/index.php [L]
+     #RewriteRule .? %{ENV:BASE}/index.php [L]
+   # RewriteRule ^plato/?-([_a-z0-9]*)$ %{ENV:BASE}/index.php [L]
+   #
 
-    RewriteRule ^plato/?-([_a-z0-9]*) /plat?id=$1 [L]
 </IfModule>
