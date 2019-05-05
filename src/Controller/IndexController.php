@@ -78,11 +78,11 @@ class IndexController extends  AbstractController
   }
 
     // Fiche plat
-    public function fiche_page(Environment $twig)
+    public function fiche_page(Environment $twig,Request $request)
     {
 
         $this->servicePlat = new PlatService($this->getDoctrine());
-        $id=1;
+        $id=$request->get('id');
         $serviceCategorie=new CategorieService($this->getDoctrine());
         $data=array();
         $data['plat']=$this->servicePlat->getPlatById($id);

@@ -16,3 +16,7 @@ contact_page:
 fiche_page:
     path: /plat
     controller: App\Controller\IndexController::fiche_page
+
+reservation:
+    path: /reservation
+    controller: App\Controller\ReservationController::index
