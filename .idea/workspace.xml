@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="024368e2-4f7a-431f-9f23-ab43da07b014" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-    </list>
+    <list default="true" id="024368e2-4f7a-431f-9f23-ab43da07b014" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -388,16 +386,15 @@
       <workItem from="1557116588475" duration="112000" />
       <workItem from="1557116819215" duration="4636000" />
       <workItem from="1557128851098" duration="3260000" />
-      <workItem from="1557136561583" duration="9410000" />
+      <workItem from="1557136561583" duration="9565000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79705000" />
+    <option name="totallyTimeSpent" value="79860000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25189108" />
       <window_info id="Structure" order="1" weight="0.25" />
