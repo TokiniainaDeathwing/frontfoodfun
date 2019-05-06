@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/owl-carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/jquery.datetimepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">-->
-    <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}?v=1">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}">
     {%  endblock %}
 </head>
 <body>
@@ -120,7 +120,7 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="single-food">
                         <div class="food-img">
-                            <a href="{{ path('fiche_page',{'id':r.id}) }}"><img src="{{ r.url }}" class="img-fluid" alt="{{ r.descriptionimage }}"></a>
+                            <a href="{{ app.request.getBaseURL() }}/plat/{{ r.nom||replace(' ','-') }}"><img src="{{ r.url }}" class="img-fluid" alt="{{ r.descriptionimage }}"></a>
                         </div>
                         <div class="food-content">
                             <div class="d-flex justify-content-between">
