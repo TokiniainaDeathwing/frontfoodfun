@@ -59,14 +59,18 @@ Options +FollowSymlinks
     RewriteRule ^ %{ENV:BASE}/index.php [L]
 
     ExpiresActive On
-    ExpiresByType assets/images/logo/favicon.png "access plus 1 year"
-    ExpiresByType assets/images/sprites/sprites.png "access plus 1 month"
-    ExpiresByType assets/images/resrevation-bg.jpg "access plus 1 month"
-    ExpiresByType assets/images/contact-bg.jpg "access plus 1 month"
-    ExpiresByType assets/images/food-bg.jpg "access plus 1 month"
-    ExpiresByType assets/images/menu-bg.jpg "access plus 1 month"
-    ExpiresByType assets/images/table-bg.jpg "access plus 1 month"
-    ExpiresDefault "access plus 2 days"
+    ExpiresByType assets/images/logo/favicon.png "access  1 year"
+    ExpiresByType assets/images/sprites/sprites.png "access  1 month"
+    ExpiresByType assets/images/resrevation-bg.jpg "access  1 month"
+    ExpiresByType assets/images/contact-bg.jpg "access  1 month"
+    ExpiresByType assets/images/banner-bg.jpg "access  1 month"
+    ExpiresByType assets/images/food-bg.jpg "access  1 month"
+    ExpiresByType assets/images/menu-bg.jpg "access  1 month"
+    ExpiresByType assets/images/table-bg.jpg "access  1 month"
+    ExpiresDefault "access  1 month"
+    <FilesMatch "\.(css)$">
+    Header set Cache-Control "public, max-age=160704000"
+    </FilesMatch>
 </IfModule>
 
 <IfModule !mod_rewrite.c>
