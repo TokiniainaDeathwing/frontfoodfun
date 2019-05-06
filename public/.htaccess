@@ -53,7 +53,7 @@ Options +FollowSymlinks
     RewriteRule ^ - [L]
     
     #RewriteRule ^fiche-([0-9]+)$ /fiche/film-$1.html [P]
-    RewriteRule ^plat/?.*-([0-9]) /plat?id=$1 [P]
+    RewriteRule ^plat/?.*/([0-9]) /plat?id=$1 [P]
     # Rewrite all other queries to the front controller.
     RewriteRule ^ %{ENV:BASE}/index.php [L]
 </IfModule>

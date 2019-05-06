@@ -120,7 +120,7 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="single-food">
                         <div class="food-img">
-                            <a href="{{ app.request.getBaseURL() }}/plat/{{ r.nom||replace(' ','-') }}"><img src="{{ r.url }}" class="img-fluid" alt="{{ r.descriptionimage }}"></a>
+                            <a href="{{ app.request.getBaseURL() }}/plat/{{ r.nom|replace({' ':'-'}) }}/{{ r.id }}"><img src="{{ r.url }}" class="img-fluid" alt="{{ r.descriptionimage }}"></a>
                         </div>
                         <div class="food-content">
                             <div class="d-flex justify-content-between">
