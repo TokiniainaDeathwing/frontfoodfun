@@ -51,7 +51,7 @@
                     <div class="main-menu">
                         {% block menu %}
                         <ul>
-                            <li class="active"><a href="#">home</a></li>
+                            <li class="active"><a href="{{ path('index_page') }}">home</a></li>
                             <li><a href="{{ path('menu_page', parameters = [], relative = false) }}">menu </a></li>
                             <li><a href=" {{ path('contact_page', parameters = [], relative = false) }}">contact</a></li>
                             <li><a href="#reservation">Reservation</a></li>

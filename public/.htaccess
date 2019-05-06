@@ -54,6 +54,7 @@ Options +FollowSymlinks
     
     #RewriteRule ^fiche-([0-9]+)$ /fiche/film-$1.html [P]
     RewriteRule ^plat/?.*/([0-9]) /plat?id=$1 [P]
+    RewriteRule ^plats/([_a-z0-9])/([_a-z0-9]) /menu?categorie=$1&query=$2 [P]
     # Rewrite all other queries to the front controller.
     RewriteRule ^ %{ENV:BASE}/index.php [L]
 </IfModule>
