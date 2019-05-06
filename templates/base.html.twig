@@ -180,7 +180,7 @@
                     </div>
                 </div>
                 <div class="col-lg-5 offset-lg-2 col-md-6 align-self-center {% if(i%2==1) %} mt-4 mt-md-0{% else %}order-2 order-md-1 mt-4 mt-md-0 {% endif %} ">
-                    <a href="{{ path('fiche_page',{'id':spec.id}) }}"><img src="{{ spec.url }}" alt="{{ spec.descriptionimage }}" class="img-fluid"></a>
+                    <a href="{{ app.request.getBaseURL() }}/plat/{{ spec.nom|replace({' ':'-'}) }}/{{ spec.id }}"><img src="{{ spec.url }}" alt="{{ spec.descriptionimage }}" class="img-fluid"></a>
                 </div>
             </div>
             {% set i=i+1 %}
