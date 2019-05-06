@@ -67,7 +67,9 @@ Options +FollowSymlinks
     ExpiresByType assets/images/menu-bg.jpg "access  1 month"
     ExpiresByType assets/images/table-bg.jpg "access  1 month"
     ExpiresDefault "access  1 month"
-
+    <FilesMatch "\.(js|css)$">
+    Header set Cache-Control "public, proxy-revalidate, max-age=160704000"
+    </FilesMatch>
 </IfModule>
 
 <IfModule !mod_rewrite.c>
