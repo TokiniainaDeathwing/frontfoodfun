@@ -15,7 +15,7 @@ class PlatService
     {
         $product = $this->re
             ->getRepository(Plat::class)
-            ->findPlatsByCategorie('specialite','1');
+            ->findPlatsByCategorie('Specialities','1');
         return $product;
 
 
