@@ -125,7 +125,7 @@
                         <div class="food-content">
                             <div class="d-flex justify-content-between">
                                 <h5>{{ r.nom }}</h5>
-                                <span class="style-change">Ar {{ r.prix }}</span>
+                                <span class="style-change">Ar {{ r.prix|number_format(2, '.', ',')}}</span>
                             </div>
                             <p class="pt-3">{{ r.descriptioncourte }}</p>
                         </div>
@@ -175,7 +175,7 @@
                     <div class="deshes-text">
                         <h3><span>{{ spec.nom }}</span><br> {{ spec.descriptioncourte }}</h3>
                         <p class="pt-3">{{ spec.descriptionlongue }}.</p>
-                        <span class="style-change">Ar {{ spec.prix }}</span>
+                        <span class="style-change">Ar {{ spec.prix|number_format(2, ' ', ',') }}</span>
                         <a href="#reservation" class="template-btn3 mt-3">Book a table <span><i class="fa fa-long-arrow-right"></i></span></a>
                     </div>
                 </div>

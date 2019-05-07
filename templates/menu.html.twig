@@ -100,7 +100,7 @@
                             <div class="food-content">
                                 <div class="d-flex justify-content-between">
                                     <h5>{{ result.nom }}</h5>
-                                    <span class="style-change">{{ result.prix }}</span>
+                                    <span class="style-change">Ar {{ result.prix|number_format(2, '.', ',') }}</span>
                                 </div>
                                 <p class="pt-3">{{ result.descriptioncourte }}</p>
                             </div>
