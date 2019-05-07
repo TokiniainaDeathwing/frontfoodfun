@@ -4,7 +4,7 @@
     {% block description %}
         <meta name="description" content="{{ plat.nom }},{{ plat.descriptioncourte }}">
     {% endblock %}
-{% block title %}El Resto-Restaurant-Menu {% endblock %}
+{% block title %}{{ plat.nom }} {% endblock %}
 
 
 
@@ -15,7 +15,7 @@
                 <div class="col-lg-2">
                     <div class="logo-area">
 
-                        <a href="{{ app.request.getBaseURL() }}"><img src="{{ asset('assets/images/logo/logo2.jpg') }}" alt="logo"  ></a>
+                        <a href="{{ app.request.getBaseURL() }}"><img src="{{ asset('assets/images/logo/logo2.png') }}" alt="logo"  ></a>
                     </div>
                 </div>
                 <div class="col-lg-10">
@@ -40,8 +40,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1><i>Our Menu</i></h1>
-                    <p class="pt-2"><i>Beast kind form divide night above let moveth bearing darkness.</i></p>
+                    <h1><i> Decouvrez ce plat ({{ plat.nom }})</i></h1>
+                    <p class="pt-2"><i></i></p>
                 </div>
             </div>
         </div>

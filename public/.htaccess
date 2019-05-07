@@ -57,19 +57,20 @@ Options +FollowSymlinks
     RewriteRule ^plats/([_a-z0-9])/([_a-z0-9]) /menu?categorie=$1&query=$2 [P]
     # Rewrite all other queries to the front controller.
     RewriteRule ^ %{ENV:BASE}/index.php [L]
-    #ExpiresActive On
-    #ExpiresByType assets/images/logo/favicon.png "access  1 year"
-    #ExpiresByType assets/images/sprites/sprites.jpg "access  1 month"
-    #ExpiresByType assets/images/resrevation-bg.jpg "access  1 month"
-    #ExpiresByType assets/images/contact-bg.jpg "access  1 month"
-    #ExpiresByType assets/images/banner-bg.jpg "access  1 month"
-    #ExpiresByType assets/images/food-bg.jpg "access  1 month"
-    #ExpiresByType assets/images/menu-bg.jpg "access  1 month"
-    #ExpiresByType assets/images/table-bg.jpg "access  1 month"
-    #ExpiresDefault "access  1 month"
-    #<FilesMatch "\.(js|css)$">
-    #Header set Cache-Control "public, proxy-revalidate, max-age=160704000"
-    #</FilesMatch>
+    ExpiresActive On
+    ExpiresByType assets/images/logo/favicon.png "access  1 year"
+    ExpiresByType assets/images/logo/logo2.png "access  1 year"
+    ExpiresByType assets/images/sprites/sprites.jpg "access  1 month"
+    ExpiresByType assets/images/resrevation-bg.jpg "access  1 month"
+    ExpiresByType assets/images/contact-bg.jpg "access  1 month"
+    ExpiresByType assets/images/banner-bg.jpg "access  1 month"
+    ExpiresByType assets/images/food-bg.jpg "access  1 month"
+    ExpiresByType assets/images/menu-bg.jpg "access  1 month"
+    ExpiresByType assets/images/table-bg.jpg "access  1 month"
+    ExpiresDefault "access  1 month"
+    <FilesMatch "\.(js|css)$">
+    Header set Cache-Control "public, proxy-revalidate, max-age=160704000"
+    </FilesMatch>
 </IfModule>
 
 <IfModule !mod_rewrite.c>
