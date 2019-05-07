@@ -59,7 +59,7 @@ Options +FollowSymlinks
     RewriteRule ^ %{ENV:BASE}/index.php [L]
     ExpiresActive On
     ExpiresByType assets/images/logo/favicon.png "access  1 year"
-    ExpiresByType assets/images/sprites/sprites.png "access  1 month"
+    ExpiresByType assets/images/sprites/sprites.jpg "access  1 month"
     ExpiresByType assets/images/resrevation-bg.jpg "access  1 month"
     ExpiresByType assets/images/contact-bg.jpg "access  1 month"
     ExpiresByType assets/images/banner-bg.jpg "access  1 month"
