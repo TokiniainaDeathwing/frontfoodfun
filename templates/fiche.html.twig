@@ -1,6 +1,9 @@
 
 {% extends "base.html.twig" %}
 
+    {% block description %}
+        <meta name="description" content="{{ plat.nom }},{{ plat.descriptioncourte }}">
+    {% endblock %}
 {% block title %}El Resto-Restaurant-Menu {% endblock %}
 
 
