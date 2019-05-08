@@ -15,7 +15,20 @@ Développé en symfony
   -Changer l'environnement en mod dev: ouvrir le fichier .env et  APP_ENV=dev
   -Activez le mode_rewrite,http_proxy d'apache
   -Ouvrir le fichier .htaccess dans public et décommentez les lignes 59 à 73
-  -Installez un virtualhost pour le nouveau site pour apache (pour faire marcher l'url rewriting en local)
+  -Installez un virtualhost pour le nouveau site pour apache (pour faire marcher l'url rewriting en local):
+    <VirtualHost *:80>
+    ServerName domain.tld
+    ServerAlias www.domain.tld
+
+    DocumentRoot /var/www/project/public
+    <Directory /var/www/project/public>
+        AllowOverride All
+        Order Allow,Deny
+        Allow from All
+    </Directory>
+
+</VirtualHost>
+
   
 
 3.Importer la base de données et modifier DATABASE_URL dans le fichier .env
