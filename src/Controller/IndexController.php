@@ -53,7 +53,7 @@ class IndexController extends  AbstractController
     if($categorie==null){
         $categorie="";
     }
-    $page=(int)($offset/$limit) ;
+    $page=($offset/$limit) ;
     $data=array();
     $data['nombre']=$this->servicePlat->countPlat($query,$categorie);
     $data['categories']=$serviceCategorie->getCategories();
@@ -61,7 +61,7 @@ class IndexController extends  AbstractController
     $data['limit']=$limit;
     $data['offset']=$offset;
     $data['query']=$query;
-    $data['page_max']=(int)($data['nombre']/$limit)+1;
+    $data['page_max']=(int)($data['nombre']/$limit)-1;
     $data['page']=$page;
     $data['categorie']=$categorie;
     //var_dump($data);
