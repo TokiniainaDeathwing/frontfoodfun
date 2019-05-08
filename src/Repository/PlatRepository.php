@@ -64,7 +64,7 @@ class PlatRepository extends ServiceEntityRepository
          FROM plat p JOIN
           images i on i.idplat=p.id
           WHERE i.type=0
-          ORDER BY RAND() LIMIT 3;
+          GROUP BY p.id ORDER BY RAND() LIMIT 3;
           
         ';
         $stmt = $conn->prepare($sql);
@@ -97,7 +97,7 @@ class PlatRepository extends ServiceEntityRepository
          ca on ca.idplat=p.id 
          JOIN categorie c ON c.id=ca.idcategorie JOIN
           images i on i.idplat=p.id
-          WHERE c.nom = :cat AND i.type=:type group by p.id order by p.id limit;
+          WHERE c.nom = :cat AND i.type=:type group by p.id order by p.id ;
         ';
         $stmt = $conn->prepare($sql);
         $stmt->execute(['cat' => $categorie,'type'=>$type]);
