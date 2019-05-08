@@ -27,7 +27,7 @@ Développé en symfony
         Allow from All
     </Directory>
 
-</VirtualHost>
+    </VirtualHost>
 
   
 
